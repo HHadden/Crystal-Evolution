@@ -13,17 +13,6 @@ function loop()
 
     while index <= 2000
 
-        #=rng_γ = rand()
-        γ = 10 + 990 * rng_γ
-
-        
-        rng_A = rand()
-        A = (7e-18 + 9.3e-17 * rng_A) * γ^2
-        rng_B = rand()
-        B = (1e-18 + 9e-18 * rng_B) * γ^2
-        rng_D = rand()
-        D = (1e-13 + 9e-13 * rng_D) * γ^2=#
-
         rng_γ = rand()
         exp_γ = 1 + 2 * rng_γ
         γ = 10^exp_γ

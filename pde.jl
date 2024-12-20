@@ -9,8 +9,7 @@ function olivine_loop(du, u, p, t)
     du[n, 3] = A*(1-u[n, 2])
 
     for i in 2:n-1
-        #zeitliche Ableitung von z
-        #du[i, 1] = 1/2*du[n, 3]/u[n, 3]*((u[i+1, 1]-u[i, 1])/dx)  +  D/u[n, 3]*(((u[i-1, 1]-2u[i, 1]+u[i+1, 1])/(dx^2))+2/(dx*i)*((u[i+1, 1]-u[i, 1])/dx))
+        #time-derivative of z
         du[i, 1] = 1/u[n, 3]*(1/2*(dx*(i-1))*du[n,3]*((u[i+1,1]-u[i,1])/dx)+D*(((u[i-1, 1]-2u[i, 1]+u[i+1, 1])/(dx^2))+2/(dx*(i-1))*((u[i+1,1]-u[i,1])/dx)))
         
     end
@@ -31,10 +30,11 @@ function olivine_loop(du, u, p, t)
             integral = integral + dx * abs(((u[i-1, 1]-2u[i, 1]+u[i+1, 1])/(dx^2))-1/(dx*(i-1))*((u[i+1, 1]-u[i, 1])/dx))*(dx*(i-1))^2
         end
     end
+    #time-derivative of y
     du[n, 2] = B/u[n, 3]*integral
 
     for i in 1:N
-        #setze alle R miteinander gleich
+        #set all x and y equal
         u[i, 3] = u[n, 3]
         u[i, 2] = u[n, 2]
     end
@@ -54,6 +54,7 @@ function olivine_loop(du, u, p, t)
         end
     end
 
+    #time-derivative of x
     u[n, 1] = (sqrt(u[n, 3])*dx+u[n-1, 1])/(1+sqrt(u[n, 3])*dx)
 
 end

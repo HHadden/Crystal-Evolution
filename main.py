@@ -22,18 +22,6 @@ def main():
 
     data_2, labels = np.hsplit(mix, np.array([4]))
 
-    """cut = np.concatenate((data, labels), axis=1)
-    i = cut.shape[0]
-
-    while i > 0:
-        i -= 1
-        if cut[i, 4] > 20:
-            cut = np.delete(cut, i, 0)
-
-    print(cut.shape[0])
-
-    data, labels = np.hsplit(cut, np.array([4]))"""
-
     model = PySRRegressor(
         binary_operators=["+", "*", "-", "/", "^"],
         #binary_operators=["+", "*", "-", "/"],
